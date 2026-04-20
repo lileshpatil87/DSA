@@ -24,7 +24,7 @@ class Patterns {
         System.out.println();
         System.out.println();
 
-        System.out.println("Character Pattern");
+        System.out.println("Characters Pattern");
         char c = 'A';
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
