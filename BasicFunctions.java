@@ -3,10 +3,14 @@ public class BasicFunctions {
         System.out.println("Factorial of 6 : " + factorial(6));
         System.out.println("Prime numbers from 1 to 100 : ");
         int arr[] = primesInRange(1, 100);
-        for( int i=0;i< arr.length;i++ ) {
-            if(arr[i] == 0) break;
-            System.out.print(arr[i]+" ");
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0)
+                break;
+            System.out.print(arr[i] + " ");
         }
+        System.out.println("\nDecimal of 10111 : " + binaryToDecimal(10111));
+        System.out.println("Binary of 23 : " + decimalToBinary(23));
+        System.out.println("1232 is Palindrome : " + palindrome(1232));
     }
 
     // Factorial
@@ -46,4 +50,45 @@ public class BasicFunctions {
         }
         return primes;
     }
+
+    // Binary to Decimal
+    public static int binaryToDecimal(int binary) {
+        int decimal = 0;
+        int counter = 0;
+        int digit = 0;
+
+        while (binary > 0) {
+            digit = binary % 10;
+            decimal += Math.pow(2, counter++) * digit;
+            binary /= 10;
+        }
+        return decimal;
+    }
+
+    // Decimal to Binary
+    public static int decimalToBinary(int decimal) {
+        int binary = 0;
+        int counter = 0;
+        int remiander = 0;
+        while (decimal > 0) {
+            remiander = decimal % 2;
+            binary = binary + remiander * (int) Math.pow(10, counter++);
+            decimal /= 2;
+        }
+        return binary;
+    }
+
+    // Palindrome Number
+    public static boolean palindrome(int number) {
+        int revNumber = 0;
+        int tempNumber = number;
+        while (tempNumber > 0) {
+            revNumber = revNumber * 10 + (tempNumber % 10);
+            tempNumber /= 10;
+        }
+        if (revNumber == number)
+            return true;
+        return false;
+    }
+
 }
