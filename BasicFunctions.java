@@ -10,7 +10,8 @@ public class BasicFunctions {
         }
         System.out.println("\nDecimal of 10111 : " + binaryToDecimal(10111));
         System.out.println("Binary of 23 : " + decimalToBinary(23));
-        System.out.println("1232 is Palindrome : " + palindrome(1232));
+        System.out.println("12321 is Palindrome : " + palindrome(12321));
+        System.out.println("Sum of digits of 1234 : " + sumOfDigits(1234));
     }
 
     // Factorial
@@ -91,4 +92,13 @@ public class BasicFunctions {
         return false;
     }
 
+    // Sum of Digits of a number
+    public static int sumOfDigits(int number) {
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
+    }
 }
