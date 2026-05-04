@@ -10,6 +10,8 @@ public class ArrayBasicFunctions {
         for (int i = 0; i < pairs.length; i++) {
             System.out.print(Arrays.toString(pairs[i]) + " ");
         }
+        System.out.println("\nAll Substrings in the array : ");
+        allSubstrings(arr);
     }
 
     // Array Reverse
@@ -38,5 +40,23 @@ public class ArrayBasicFunctions {
             }
         }
         return pairs;
+    }
+
+    // All Substrings in an array
+    public static void allSubstrings(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                    System.out.print("[");
+                    for (int k = i; k <= j; k++) {
+                        System.out.print(arr[k]);
+                        if(k != j) {
+                            System.out.print(", ");
+                        }
+                    }
+                    System.out.print("]");
+            }
+            System.out.println();
+        }
+        System.out.println("[]");
     }
 }
