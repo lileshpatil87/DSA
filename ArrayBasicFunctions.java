@@ -12,6 +12,8 @@ public class ArrayBasicFunctions {
         }
         System.out.println("\nAll Substrings in the array : ");
         allSubstrings(arr);
+        System.out.println("Max Subarray Sum in the array : " + maxSubarraySum(arr));
+        System.out.println("Max Subarray Sum in the array using Prefix Sum : " + prefixSum(arr));
     }
 
     // Array Reverse
@@ -43,20 +45,66 @@ public class ArrayBasicFunctions {
     }
 
     // All Substrings in an array
+    // Time Complexity O(n^3)
     public static void allSubstrings(int arr[]) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
-                    System.out.print("[");
-                    for (int k = i; k <= j; k++) {
-                        System.out.print(arr[k]);
-                        if(k != j) {
-                            System.out.print(", ");
-                        }
+                System.out.print("[");
+                for (int k = i; k <= j; k++) {
+                    System.out.print(arr[k]);
+                    if (k != j) {
+                        System.out.print(", ");
                     }
-                    System.out.print("]");
+                }
+                System.out.print("]");
             }
             System.out.println();
         }
         System.out.println("[]");
+    }
+
+    // Max Subarray
+    // Time Complexity O(n^3)
+    public static int maxSubarraySum(int arr[]) {
+        int max = Integer.MIN_VALUE;
+        ;
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                for (int k = i; k <= j; k++) {
+                    sum += arr[k];
+                }
+                if (sum > max) {
+                    max = sum;
+                }
+                sum = 0;
+            }
+        }
+        return max;
+    }
+
+    // Prefix Sum
+    // Time Complexity O(n^2)
+    public static int prefixSum(int arr[]) {
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        int prefixArr[] = new int[arr.length];
+        prefixArr[0] = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            prefixArr[i] = prefixArr[i - 1] + arr[i];
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                sum = i == 0 ? prefixArr[j] : prefixArr[j] - prefixArr[i - 1];
+                if (sum > max) {
+                    max = sum;
+                }
+            }
+        }
+
+        return max;
+
     }
 }
